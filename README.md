@@ -1,1 +1,1 @@
-# docker-centos5-devtoolset2
+# docker-centos5-devtoolset2-v2

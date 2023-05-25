@@ -1,0 +1,5 @@
+[devtoolset2]
+name=RedHat DevToolset v2 $releasever - $basearch
+baseurl=http://puias.princeton.edu/data/puias/DevToolset/$releasever/$basearch/
+enabled=1
+gpgcheck=0

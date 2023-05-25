@@ -1,0 +1,39 @@
+# CentOS-Vault.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+
+[C5.11-base]
+name=CentOS-5.11 - Base
+#baseurl=http://vault.centos.org/5.11/os/$basearch/
+baseurl=http://archive.kernel.org/centos-vault/5.11/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+enabled=1
+
+[C5.11-updates]
+name=CentOS-5.11 - Updates
+#baseurl=http://vault.centos.org/5.11/updates/$basearch/
+baseurl=http://archive.kernel.org/centos-vault/5.11/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+enabled=1
+
+[C5.11-extras]
+name=CentOS-5.11 - Extras
+#baseurl=http://vault.centos.org/5.11/extras/$basearch/
+baseurl=http://archive.kernel.org/centos-vault/5.11/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+enabled=1
+
+[C5.11-centosplus]
+name=CentOS-5.11 - Plus
+#baseurl=http://vault.centos.org/5.11/centosplus/$basearch/
+baseurl=http://archive.kernel.org/centos-vault/5.11/centosplus/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+enabled=1
