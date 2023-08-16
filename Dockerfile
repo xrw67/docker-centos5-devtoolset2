@@ -1,7 +1,6 @@
 FROM dockbuild/centos5-devtoolset2-gcc4
 
-WORKDIR /work
-ENTRYPOINT ["/bin/bash"]
+WORKDIR /source
 
 RUN rm -f /etc/yum.repos.d/* 
 COPY files/CentOS-Vault.repo /etc/yum.repos.d/CentOS-Vault.repo
