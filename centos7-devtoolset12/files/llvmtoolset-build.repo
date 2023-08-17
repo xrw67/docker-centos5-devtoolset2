@@ -1,0 +1,5 @@
+[llvmtoolset-build]
+name=LLVM Toolset 11.0 - Build
+baseurl=https://buildlogs.centos.org/c7-llvm-toolset-11.0.x86_64/
+gpgcheck=0
+enabled=1
