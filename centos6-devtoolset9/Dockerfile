@@ -66,7 +66,8 @@ RUN yum clean all && \
     #
     # Install devtoolset
     #
-    yum install -y glibc-devel.i386 libgcc.i386 libstdc++.i386 devtoolset-9 \
+    yum install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 devtoolset-9 \
+        https://download.cloudlinux.com/cloudlinux/6/sclo/devtoolset-9/i386/devtoolset-9-libstdc++-devel-9.1.1-2.5.el6.i686.rpm \
     && \
     #
     # Custom install
@@ -86,10 +87,6 @@ RUN yum clean all && \
     # cleanup
     #
     yum -y clean all && rm -rf /var/cache/yum
-
-RUN wget https://download.cloudlinux.com/cloudlinux/6/sclo/devtoolset-9/i386/devtoolset-9-libstdc++-devel-9.1.1-2.5.el6.i686.rpm && \
-    rpm -ivh devtoolset-9-libstdc++-devel-9.1.1-2.5.el6.i686.rpm && \
-    rm -f devtoolset-9-libstdc++-devel-9.1.1-2.5.el6.i686.rpm
 
 WORKDIR /work
 
