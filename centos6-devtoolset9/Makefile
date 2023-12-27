@@ -1,5 +1,5 @@
 all:
-	docker build -t devtoolset9-centos6 .
+	docker build -t centos6-devtoolset9 .
 
 run:
-	docker run -it --rm devtoolset9-centos6 /bin/bash
+	docker run -it --rm centos6-devtoolset9 /bin/bash
