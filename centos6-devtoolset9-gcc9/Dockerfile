@@ -21,10 +21,10 @@ ARG PYTHON_VERSION=3.12.1
 ARG LCOV_VERSION=1.16
 
 COPY imagefiles/ /imagefiles/
-COPY imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
-COPY imagefiles/devtoolset9.repo /etc/yum.repos.d/devtoolset9.repo
 
-RUN yum clean all && \
+RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
+    mv -f imagefiles/devtoolset9.repo /etc/yum.repos.d/devtoolset9.repo && \
+    yum clean all && \
     yum makecache && \
     yum update -y && \
     yum install -y \
@@ -47,7 +47,11 @@ RUN yum clean all && \
         which \
         yasm \
         zlib-devel \
-        vim && \
+        vim \
+        perl-IPC-Cmd \
+        perl-ExtUtils-MakeMaker \
+        perl-CPAN \
+        && \
     # Needed to build Python from source
     yum install -y \
         bzip2-devel \
@@ -58,20 +62,13 @@ RUN yum clean all && \
     #
     # Install devtoolset
     #
-    yum install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 devtoolset-9 \
+    yum install -y glibc-devel.i686 libgcc.i686 libstdc++.i686 \
+        devtoolset-9 devtoolset-9-* \
         https://download.cloudlinux.com/cloudlinux/6/sclo/devtoolset-9/i386/devtoolset-9-libstdc++-devel-9.1.1-2.5.el6.i686.rpm && \
     # Remove sudo provided by "devtoolset-9" since it doesn't work with
     # our sudo wrapper calling gosu.
     rm -f /opt/rh/devtoolset-9/root/usr/bin/sudo && \
-    #
-    # cleanup
-    #
-    yum -y clean all && rm -rf /var/cache/yum
-    
-#
-# Custom install
-#
-RUN chmod +x /imagefiles/*.sh && \
+    chmod +x /imagefiles/*.sh && \
     /imagefiles/install-cmake-binary.sh && \
     /imagefiles/install-gosu-binary.sh && \
     /imagefiles/install-gosu-binary-wrapper.sh && \
@@ -79,7 +76,11 @@ RUN chmod +x /imagefiles/*.sh && \
     /imagefiles/install-ninja-binary.sh && \
     /imagefiles/build-and-install-git.sh && \
     /imagefiles/build-and-install-python.sh && \
-    rm -rf /imagefiles
+    rm -rf /imagefiles && \
+    #
+    # cleanup
+    #
+    yum -y clean all && rm -rf /var/cache/yum
 
 WORKDIR /work
 
