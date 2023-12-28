@@ -82,6 +82,15 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     #
     yum -y clean all && rm -rf /var/cache/yum
 
+#
+# Patch assert.h
+#
+RUN echo '' >> /usr/include/assert.h && \
+    echo '#if !defined(__cplusplus) && defined(DISABLE_STATIC_ASSERT)' >> /usr/include/assert.h && \
+    echo '#define static_assert(_EXPRESS_,_MESSAGE_)'  >> /usr/include/assert.h && \
+    echo '#endif' >> /usr/include/assert.h && \
+    echo '' >> /usr/include/assert.h
+
 WORKDIR /work
 
 ENTRYPOINT ["/entrypoint.sh"]
