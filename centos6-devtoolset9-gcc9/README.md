@@ -1,13 +1,17 @@
-# centos5-devtoolset2-gcc4-v2
+# centos6-devtoolset9-gcc9
 
-C++11 for CentOS 5 docker image.
+C++17 for CentOS 6 docker image.
 
-- base on [dockbuild/centos5-devtoolset2-gcc4](https://hub.docker.com/r/dockbuild/centos5-devtoolset2-gcc4)
 - add `-m32` support
 - Info
-	- wordir：/source
+	- wordir：/work
 	- toolchan version：
-		- gcc：4.8.2-15.el5
-		- glibc: 2.5-123.el5_11.3
-		- cmake：3.17.1
-		- ninja：1.9.0
+		- gcc：gcc version 9.1.1 20190605 (Red Hat 9.1.1-2) (GCC)
+		- glibc: 2.12-1.212
+		- cmake：3.27.9
+		- ninja：1.10.0.git.kitware.jobserver-1
+		- python: 3.12.1
+		- lcov: 1.16
+
+
+
