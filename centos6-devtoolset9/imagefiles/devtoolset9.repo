@@ -1,5 +1,0 @@
-[devtoolset2]
-name=RedHat DevToolset v9 $releasever - $basearch
-baseurl=https://download.cloudlinux.com/cloudlinux/$releasever/sclo/devtoolset-9/$basearch/
-enabled=1
-gpgcheck=0

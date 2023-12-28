@@ -1,5 +1,7 @@
 FROM dockbuild/centos5-devtoolset2-gcc4
 
+LABEL maintainer="xwr67 <xrw67@outlook.com>"
+
 WORKDIR /source
 
 RUN rm -f /etc/yum.repos.d/* 
