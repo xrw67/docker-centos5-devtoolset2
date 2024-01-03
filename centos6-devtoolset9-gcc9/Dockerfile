@@ -92,8 +92,3 @@ RUN echo '' >> /usr/include/assert.h && \
     echo '' >> /usr/include/assert.h
 
 WORKDIR /work
-
-ENTRYPOINT ["/entrypoint.sh"]
-
-# Runtime scripts
-COPY imagefiles/entrypoint.sh /
