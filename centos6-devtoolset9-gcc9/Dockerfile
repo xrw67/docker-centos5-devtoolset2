@@ -70,8 +70,6 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     rm -f /opt/rh/devtoolset-9/root/usr/bin/sudo && \
     chmod +x /imagefiles/*.sh && \
     /imagefiles/install-cmake-binary.sh && \
-    /imagefiles/install-gosu-binary.sh && \
-    /imagefiles/install-gosu-binary-wrapper.sh && \
     /imagefiles/install-lcov-binary.sh && \
     /imagefiles/install-ninja-binary.sh && \
     /imagefiles/build-and-install-git.sh && \
