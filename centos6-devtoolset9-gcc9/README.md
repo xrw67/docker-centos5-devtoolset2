@@ -17,9 +17,26 @@ GCC9(C++17) for CentOS 6 docker image.
 - lcov: 1.16
 - zsh
 
-## issue
+## A note about vsyscall
 
-- centos:6 `/bin/bash` not working on Linux kernel 4.15.9
+CentOS 6 binaries and/or libraries are built to expect some system calls to be accessed via vsyscall mappings. Some linux distributions have opted to disable vsyscall entirely (opting exclusively for more secure vdso mappings), causing segmentation faults.
 
-> Running a docker run --rm -it centos:6 bash fails with exit status 139 (i.e. bash exits with SIGSEGV) on Linux kernel 4.15.9. Downgrading to 4.14.15 (which is vulnerable to Spectre V1) gets rid of the segfault.
-> <https://stackoverflow.com/questions/49486873/how-to-run-interactive-centos-6-within-docker>
+If running `docker run --rm -it centos:6` bash immediately exits with status code 139, check to see if your system has disabled vsyscall:
+
+```
+$ cat /proc/self/maps | egrep 'vdso|vsyscall'
+7fffccfcc000-7fffccfce000 r-xp 00000000 00:00 0                          [vdso]
+$
+```
+
+vs
+
+```
+$ cat /proc/self/maps | egrep 'vdso|vsyscall'
+7fffe03fe000-7fffe0400000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+```
+
+If you do not see a vsyscall mapping, and you need to run a CentOS 6 container, try adding `vsyscall=emulated` to the kernel options in your bootloader
+
+Further reading : [lwn.net](https://lwn.net/Articles/446528)
