@@ -6,6 +6,7 @@ ENV CC=/opt/rh/devtoolset-9/root/usr/bin/gcc \
     CXX=/opt/rh/devtoolset-9/root/usr/bin/g++ \
     FC=/opt/rh/devtoolset-9/root/usr/bin/gfortran \
     PATH=/opt/rh/devtoolset-9/root/usr/bin${PATH:+:${PATH}} \
+	OS_RELEASE=CentOS6 \
     # http://bugs.python.org/issue19846
     # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
     # https://sourceware.org/bugzilla/show_bug.cgi?id=17318#c4
