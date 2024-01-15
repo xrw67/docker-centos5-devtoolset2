@@ -89,4 +89,9 @@ RUN echo '' >> /usr/include/assert.h && \
     echo '#endif' >> /usr/include/assert.h && \
     echo '' >> /usr/include/assert.h
 
+#
+# Replace perl 
+#
+RUN ln -sf /opt/rh/rh-perl524/root/usr/bin/perl /usr/bin/perl
+
 WORKDIR /work
