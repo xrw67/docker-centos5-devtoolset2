@@ -5,7 +5,8 @@ LABEL maintainer="xwr67 <xrw67@outlook.com>"
 ENV CC=/opt/rh/devtoolset-9/root/usr/bin/gcc \
     CXX=/opt/rh/devtoolset-9/root/usr/bin/g++ \
     FC=/opt/rh/devtoolset-9/root/usr/bin/gfortran \
-    PATH=/opt/rh/devtoolset-9/root/usr/bin${PATH:+:${PATH}} \
+    PATH=/opt/rh/devtoolset-9/root/usr/bin:/opt/rh/rh-perl524/root/usr/local/bin:/opt/rh/rh-perl524/root/usr/bin${PATH:+:${PATH}} \
+    LD_LIBRARY_PATH=/opt/rh/rh-perl524/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}} \
 	OS_RELEASE=CentOS6 \
     # http://bugs.python.org/issue19846
     # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
@@ -25,6 +26,8 @@ COPY imagefiles/ /imagefiles/
 
 RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     mv -f imagefiles/devtoolset9.repo /etc/yum.repos.d/devtoolset9.repo && \
+    mv -f imagefiles/CentOS-SCLo-scl.repo /etc/yum.repos.d/CentOS-SCLo-scl.repo && \
+    mv -f imagefiles/CentOS-SCLo-scl-rh.repo /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo && \
     yum clean all && \
     yum makecache && \
     yum update -y && \
@@ -40,8 +43,7 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
         openssh-clients \
         openssl-devel \
         patch \
-        perl \
-        perl-devel \
+        rh-perl524-perl* \
         unzip \
         wget \
         tar \
@@ -49,9 +51,6 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
         yasm \
         zlib-devel \
         vim \
-        perl-IPC-Cmd \
-        perl-ExtUtils-MakeMaker \
-        perl-CPAN \
         && \
     # Needed to build Python from source
     yum install -y \
