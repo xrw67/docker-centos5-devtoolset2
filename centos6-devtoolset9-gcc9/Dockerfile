@@ -5,9 +5,12 @@ LABEL maintainer="xwr67 <xrw67@outlook.com>"
 ENV CC=/opt/rh/devtoolset-9/root/usr/bin/gcc \
     CXX=/opt/rh/devtoolset-9/root/usr/bin/g++ \
     FC=/opt/rh/devtoolset-9/root/usr/bin/gfortran \
-    PATH=/opt/rh/devtoolset-9/root/usr/bin:/opt/rh/rh-perl524/root/usr/local/bin:/opt/rh/rh-perl524/root/usr/bin${PATH:+:${PATH}} \
-    LD_LIBRARY_PATH=/opt/rh/rh-perl524/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}} \
+    PATH=/opt/go/bin:/opt/openssl/bin:/opt/rh/devtoolset-9/root/usr/bin:/opt/rh/rh-perl524/root/usr/local/bin:/opt/rh/rh-perl524/root/usr/bin${PATH:+:${PATH}} \
+    LD_LIBRARY_PATH=/opt/openssl/lib:/opt/rh/rh-perl524/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}} \
 	OS_RELEASE=CentOS6 \
+    GOROOT=/opt/go \
+    GO111MODULE=on \
+    GOPROXY=https://goproxy.cn \
     # http://bugs.python.org/issue19846
     # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
     # https://sourceware.org/bugzilla/show_bug.cgi?id=17318#c4
@@ -72,7 +75,9 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     /imagefiles/install-cmake-binary.sh && \
     /imagefiles/install-lcov-binary.sh && \
     /imagefiles/install-ninja-binary.sh && \
+    /imagefiles/install-golang-binary.sh && \
     /imagefiles/build-and-install-git.sh && \
+    /imagefiles/build-and-install-openssl.sh && \
     /imagefiles/build-and-install-python.sh && \
     rm -rf /imagefiles && \
     #
