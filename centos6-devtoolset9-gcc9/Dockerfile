@@ -21,7 +21,7 @@ ENV CC=/opt/rh/devtoolset-9/root/usr/bin/gcc \
 
 ARG CMAKE_VERSION=3.27.9
 ARG GIT_VERSION=2.35.0
-ARG NINJA_VERSION=1.10.0.gfb670.kitware.jobserver-1
+ARG NINJA_VERSION=1.11.1
 ARG PYTHON_VERSION=3.12.1
 ARG LCOV_VERSION=1.16
 
@@ -74,11 +74,11 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     chmod +x /imagefiles/*.sh && \
     /imagefiles/install-cmake-binary.sh && \
     /imagefiles/install-lcov-binary.sh && \
-    /imagefiles/install-ninja-binary.sh && \
     /imagefiles/install-golang-binary.sh && \
     /imagefiles/build-and-install-git.sh && \
     /imagefiles/build-and-install-openssl.sh && \
     /imagefiles/build-and-install-python.sh && \
+    /imagefiles/build-and-install-ninja-binary.sh && \
     rm -rf /imagefiles && \
     #
     # cleanup
