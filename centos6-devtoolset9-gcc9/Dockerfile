@@ -79,6 +79,7 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
     /imagefiles/build-and-install-openssl.sh && \
     /imagefiles/build-and-install-python.sh && \
     /imagefiles/build-and-install-ninja-binary.sh && \
+    /imagefiles/install-vcpkg.sh && \
     rm -rf /imagefiles && \
     #
     # cleanup
