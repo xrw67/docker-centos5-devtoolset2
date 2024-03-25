@@ -50,6 +50,7 @@ RUN mv -f imagefiles/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo && \
         unzip \
         wget \
         tar \
+        xz \
         which \
         yasm \
         zlib-devel \
